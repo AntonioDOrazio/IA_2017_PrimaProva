@@ -119,12 +119,12 @@
         <subPane>
           <expand>
             <path>
-              <item name="Esame Pratico IA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Esame Pratico IA" type="462c0819:PsiDirectoryNode" />
+              <item name="IA_2017_PrimaProva" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IA_2017_PrimaProva" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Esame Pratico IA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Esame Pratico IA" type="462c0819:PsiDirectoryNode" />
+              <item name="IA_2017_PrimaProva" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IA_2017_PrimaProva" type="462c0819:PsiDirectoryNode" />
               <item name="strutture" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -138,11 +138,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../dictionary_tree" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/anton/Desktop/Esame Pratico IA/strutture/Stack.py" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/anton/Desktop/IA_2017_PrimaProva/strutture/Stack.py" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\anton\Desktop\Esame Pratico IA" />
+      <recent name="C:\Users\anton\Desktop\IA_2017_PrimaProva" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -169,9 +169,9 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Esame Pratico IA" />
+      <module name="IA_2017_PrimaProva" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\Users\anton\Desktop\Esame Pratico IA\LazyDictionary.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\anton\Desktop\IA_2017_PrimaProva\LazyDictionary.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -188,7 +188,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Esame Pratico IA" />
+      <module name="IA_2017_PrimaProva" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LazyDictionary.py" />
       <option name="PARAMETERS" value="" />
