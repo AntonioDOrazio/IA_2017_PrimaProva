@@ -30,11 +30,24 @@ def main():
     print(registro.tree.stampa())
 
     print("Inizializzo dizionario da struttura esistente")
-    codiciLibri = [[13, "1984"], [9, "Harry Potter"], ["N.A.","Il signore degli Anelli"]]
+    codiciLibri = [[13, "1984"], [9, "Harry Potter"], ["N.A.", "Il signore degli Anelli"]]
     libri = LazyDictionary(codiciLibri)
     print(libri.get(13))
     print(libri.get("N.A."))
     print(libri.allPairs())
+
+    # TODO eliminare
+    print("Inserisco chiave 2")
+    ciao = LazyDictionary()
+    ciao.add(2, 45)
+    print("size ", ciao.length)
+    print("omg", ciao.size())
+    ciao.tree.stampa()
+    ciao.add(2, 56)
+    print("size ", ciao.length)
+    ciao.values()
+    ciao.tree.stampa()
+
 
 if __name__ == '__main__':
     main()

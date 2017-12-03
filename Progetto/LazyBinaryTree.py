@@ -7,40 +7,46 @@ else:
     from strutture.Stack import PilaArrayList
     from strutture.Queue import CodaArrayList_deque
 
-""" Classe BinaryNode: definisce un singolo nodo con 
-informazioni e nodi padre, figlio destro e figlio sinistro"""
+
 class BinaryNode:
+    """ Classe BinaryNode: definisce un singolo nodo con
+    informazioni e nodi padre, figlio destro e figlio sinistro"""
+
     def __init__(self, info):
-        # @param elems: lista per inizializzare con sintassi [chiave, valore, attivo]
-        # attivo: boolean, stabilisce se elemento è presente o cancellato
+        """info: lista per inizializzare con sintassi [chiave, valore, attivo]
+        attivo: boolean, stabilisce se elemento è presente o cancellato"""
         self.info = info
         self.father = None
         self.leftSon = None
         self.rightSon = None
 
     def toString(self):
-        # @return: stringa con i valori del nodo
+        """return: stringa con i valori del nodo"""
         return "{0} {1} {2} {3} {4} {5}".format(str(self.info[0]), str(self.info[1]), str(self.info[2]),
                                                 str(self.father), str(self.leftSon), str(self.rightSon))
 
-""" Classe LazyBinaryTree: definisce un albero binario di ricerca 
-a partire dalla sua radice. Implementa la lazy deletion. """
+
 class LazyBinaryTree:
+    """ Classe LazyBinaryTree: definisce un albero binario di ricerca
+    a partire dalla sua radice. Implementa la lazy deletion. """
+
     def __init__(self, rootNode=None):
-        # @param rootNode: BinaryNode, la radice dell'albero
+        """param rootNode: BinaryNode, la radice dell'albero"""
         self.root = rootNode
 
-    """ INSERIMENTO """
-    # Principale: inserisce nodo [chiave, valore, attivo] valore nell'albero
+    ### INSERIMENTO ###
     def insert(self, key, value):
-        # @param key: numero o stringa
-        # @param val: numero o stringa
-
+        """ Inserimento principale: inserisce nodo [chiave, valore, attivo] valore nell'albero
+        param key: numero o stringa
+        param val: numero o stringa
+        return Boolean: True se nodo inserito, False se nodo sovrascritto """
+        key = str(key)
         values = [key, value, True]
         newTree = LazyBinaryTree(BinaryNode(values))
 
         if self.root == None:
             self.root = newTree.root
+            return True
         else:
             curr = self.root
             pred = None
@@ -51,39 +57,42 @@ class LazyBinaryTree:
                     print("not curr info")
                     break
                 pred = curr
-                if key <= self.key(curr):
+                if key < self.key(curr):
                     curr = curr.leftSon
-                else:
+                elif key > self.key(curr):
                     curr = curr.rightSon
-
+                else:
+                    break
             if curr is None:
                 if key <= self.key(pred):
                     self.insertAsLeftSubTree(pred, newTree)
                 else:
                     self.insertAsRightSubTree(pred, newTree)
+                return True
             else:
                 curr.info = self.info(newTree.root)
+                return False
 
-    # Inserisce radice di un sottoalbero come figlio sinistro del nodo father
     def insertAsLeftSubTree(self, father, subtree):
-
+        """Inserisce radice di un sottoalbero come figlio sinistro del nodo father"""
         son = subtree.root
         if son != None:
             son.father = father
         father.leftSon = son
 
-    # Inserisce radice di un sottoalbero come figlio destro del nodo father
     def insertAsRightSubTree(self, father, subtree):
-
+        """Inserisce radice di un sottoalbero come figlio destro del nodo father"""
         son = subtree.root
         if son != None:
             son.father = father
         father.rightSon = son
 
-    """ CANCELLAZIONE """
-    # Principale: cancella dall'albero il nodo con chiave key
+    ### CANCELLAZIONE ###
     def delete(self, key):
-        # @param key: numero o stringa
+        """ Cancellazione principale: cancella dall'albero il nodo con chiave key
+        param key: numero o stringa
+        return Boolean: True se eliminato correttamente, False altrimenti """
+        key = str(key)
         toRemove = self.search(key)
         if toRemove != None:
             if toRemove.leftSon == None or toRemove.rightSon == None:
@@ -97,18 +106,21 @@ class LazyBinaryTree:
                 # adesso so che maxLeft non ha figli destri e posso applicare
                 # la cutOneSonNode
                 self.oneSonDeletion(maxLeft)
+            return True
+        return False
 
-    # Cancella nodo con 0 o 1 figli. Implementa Lazy Deletion
     def oneSonDeletion(self, node):
+        """Cancella nodo con 0 o 1 figli. Implementa Lazy Deletion"""
         node.info[2] = False
 
-    """ RICERCA """
-    # Principale: restituisce nodo corrispondente a chiave key
+    ### RICERCA ###
+
     def search(self, key):
-        # @return: BinaryNode, nodo corrispondente a chiave key
+        """Ricerca principale: restituisce nodo corrispondente a chiave key
+        return: BinaryNode, nodo corrispondente a chiave key"""
         if self.root == None:
             return None
-
+        key = str(key)
         curr = self.root
         while curr != None:
             currKey = self.key(curr)
@@ -124,47 +136,48 @@ class LazyBinaryTree:
 
         return None
 
-    """ METODI APPOGGIO CON CONTROLLO SE NODO A NONE """
+    ### Metodi di appoggio con controllo se nodo è none ###
     def key(self, node):
-        # @return: string, la chiave del nodo
+        """return: string, la chiave del nodo"""
         if node is None:
             return None
         return node.info[0]
 
     def value(self, node):
-        # @return: string o valore numerico, valore del nodo
+        """return il valore associato al nodo"""
         if node is None:
             return None
         return node.info[1]
 
     def isActive(self, node):
-        # @return: boolean, true se nodo è attivo, falso se cancellato
+        """return: boolean, true se nodo è attivo, falso se cancellato"""
         if node is None:
             return False
         else:
             return node.info[2]
 
     def info(self, node):
-        # @return: lista [chiave, valore, attivo]
+        """return: lista [chiave, valore, attivo]"""
         if node is None:
-            return None
+            return False
         else:
             return node.info
 
     def maxKeySon(self, root):
-        # @return: BinaryNode: nodo con chiave piu grande (quello piu a destra)
+        """return: BinaryNode: nodo con chiave piu grande (quello piu a destra)"""
         curr = root
         while curr.rightSon is not None:
             curr = curr.rightSon
         return curr
 
     ### VISITE E STAMPA ###
-    # Visita in profondità
+
     def DFS(self):
-        # @return: lista di BinaryNode.info
+        """Visita in profondità
+        return: lista di BinaryNode.info"""
         res = []
         stack = PilaArrayList()
-        if self.root is not None and self.isActive(self.root):
+        if self.root is not None and self.isActive(self.root):  # TODO forse eliminare ultimo control
             stack.push(self.root)
         while not stack.isEmpty():
             current = stack.pop()
@@ -176,16 +189,17 @@ class LazyBinaryTree:
                 stack.push(current.leftSon)
         return res
 
-    # Visita in ampiezza
     def BFS(self):
-        # @return: lista di BinaryNode.info
+        """Visita in ampiezza
+        return: lista di BinaryNode.info"""
         res = []
         q = CodaArrayList_deque()
         if self.root != None:
             q.enqueue(self.root)
         while not q.isEmpty():
             current = q.dequeue()
-            res.append(current.info)
+            if self.isActive(current):
+                res.append(current.info)
             if current.leftSon != None:
                 q.enqueue(current.leftSon)
             if current.rightSon != None:
@@ -193,7 +207,7 @@ class LazyBinaryTree:
         return res
 
     def stampa(self):
-        # @return: void. Stampa albero sfruttando pila di appoggio
+        """return: void. Stampa albero sfruttando pila di appoggio"""
         stack = PilaArrayList()
         if self.root is not None:
             # pila di liste di due elementi
