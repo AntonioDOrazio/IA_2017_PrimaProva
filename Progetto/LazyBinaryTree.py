@@ -114,7 +114,6 @@ class LazyBinaryTree:
         node.info[2] = False
 
     ### RICERCA ###
-
     def search(self, key):
         """Ricerca principale: restituisce nodo corrispondente a chiave key
         return: BinaryNode, nodo corrispondente a chiave key"""
@@ -171,7 +170,6 @@ class LazyBinaryTree:
         return curr
 
     ### VISITE E STAMPA ###
-
     def DFS(self):
         """Visita in profondità
         return: lista di BinaryNode.info"""
