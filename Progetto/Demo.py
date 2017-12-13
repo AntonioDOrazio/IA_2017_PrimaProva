@@ -1,9 +1,12 @@
+# Antonio D'Orazio - 0242178
+""" Alcuni esempi sull'esecuzione del dizionario """
+
+
 from LazyDictionary import LazyDictionary
 import cProfile
 import pstats
 
 def main():
-    """Demo sull'esecuzione del dizionario"""
     print("registro = LazyDictionary()")
     registro = LazyDictionary()
 
@@ -41,6 +44,7 @@ def main():
     print(libri.get("N.A."))
     print(libri.allPairs())
 
+
     # TODO eliminare
     print("Inserisco chiave 2")
     ciao = LazyDictionary()
@@ -60,6 +64,12 @@ def main():
 
 '''Variabile globale per il dizionario, a scopo di profiling'''
 registro = LazyDictionary()
+
+def codeProfiling():
+    popolaDizionario()
+    cProfile.run('elemento()', "output.txt")
+    p = pstats.Stats("output.txt")
+    p.strip_dirs().sort_stats("time").print_stats()
 
 def creaDizionario():
     registro = LazyDictionary()
@@ -93,18 +103,17 @@ def rimuovi():
 
 def albero():
     # Stampo l'intero albero
-    print(registro.tree.stampa())
+    registro.tree.stampa()
 
 def elemento():
-    # Stampo un preciso elemento
-    print(registro.get("Arte"))
+    # Eseguo una ricerca
+    result = registro.get("Arte")
+
 
 
 if __name__ == '__main__':
     main()
 
-    popolaDizionario()
-    cProfile.run('stampaChiavi()', "output.txt")
-    p = pstats.Stats("output.txt")
-    p.strip_dirs().sort_stats("time").print_stats()
+   # codeProfiling()
+
 

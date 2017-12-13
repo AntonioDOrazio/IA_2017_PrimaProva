@@ -53,15 +53,14 @@ class LazyBinaryTree:
 
             # cerco posizione corretta ed inserisco
             while curr is not None:
-                if not curr.info[2]:
-                    print("not curr info")
+                if not curr.info[2]: # Per sovrascrivere un elemento eliminato
                     break
                 pred = curr
                 if key < self.key(curr):
                     curr = curr.leftSon
                 elif key > self.key(curr):
                     curr = curr.rightSon
-                else:
+                else: # Se chiave è già presente sovrascrivo
                     break
             if curr is None:
                 if key <= self.key(pred):
