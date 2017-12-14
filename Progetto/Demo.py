@@ -1,10 +1,9 @@
 # Antonio D'Orazio - 0242178
 """ Alcuni esempi sull'esecuzione del dizionario """
-
-
 from LazyDictionary import LazyDictionary
 import cProfile
 import pstats
+
 
 def main():
     print("registro = LazyDictionary()")
@@ -19,55 +18,52 @@ def main():
     print('registro.add("Ed. Fisica", "Distinto")')
     registro.add("Ed. Fisica", "Distinto")
 
-    print("Materie, registro.keys() ==> ", registro.keys())
+    print("\nMaterie, registro.keys() ==> ", registro.keys())
     print("Voti, registro.values() ==> ", registro.values())
 
-    print("Elimino Storia")
+    print("Dimensione dizionario: ", registro.size());
+
+    print('\nElimino Storia: registro.remove("Storia")')
     registro.remove("Storia")
 
     print("Struttura con elemento eliminato")
-    print(registro.tree.stampa())
+    registro.tree.stampa()
+    print("Dimensione dizionario: ", registro.size());
 
-    print("Sovrascrivo con nuovo elemento")
+    print('\nSovrascrivo con nuovo elemento ==> registro.add("Scienze", 9)')
     registro.add("Scienze", 9)
 
     print("Struttura con elemento sovrascritto")
-    print(registro.tree.stampa())
+    registro.tree.stampa()
+    print("Dimensione dizionario: ", registro.size());
 
-    print("Inizializzo dizionario da struttura esistente")
+    print('\nSovrascrivo un elemento attivo ==> registro.add("Scienze", 8)')
+    registro.add("Scienze", 8)
 
+    print("Struttura con elemento sovrascritto")
+    registro.tree.stampa()
+    print("Dimensione dizionario: ", registro.size());
 
+    print("\nInizializzo dizionario da struttura esistente")
+    print('codiciLibri = [[13, "1984"], [9, "Harry Potter"], ["N.A.", "Il signore degli Anelli"]]')
     codiciLibri = [[13, "1984"], [9, "Harry Potter"], ["N.A.", "Il signore degli Anelli"]]
-
+    print('libri = LazyDictionary(codiciLibri)')
     libri = LazyDictionary(codiciLibri)
-    print(libri.get(13))
-    print(libri.get("N.A."))
-    print(libri.allPairs())
+    print("Stampo struttura albero")
+    registro.tree.stampa()
+
+    print("\nlibri.get(13) ==> ", libri.get(13))
+    print('libri.get("N.A.") ==> ', libri.get("N.A."))
+    print("libri.allPairs() ==> ", libri.allPairs())
 
 
-    # TODO eliminare
-    print("Inserisco chiave 2")
-    ciao = LazyDictionary()
-    ciao.add(2, 45)
-    print("size ", ciao.length)
-    print("omg", ciao.size())
-    ciao.tree.stampa()
-    ciao.add(2, 56)
-    print("size ", ciao.length)
-    ciao.values()
-    ciao.tree.stampa()
-
-
-
-
-### CODE PROFILING ###
-
-'''Variabile globale per il dizionario, a scopo di profiling'''
+'''Code profiling'''
+#Variabile globale per il dizionario, a scopo di profiling
 registro = LazyDictionary()
 
 def codeProfiling():
     popolaDizionario()
-    cProfile.run('elemento()', "output.txt")
+    cProfile.run('funzioneDaProfilare()', "output.txt")
     p = pstats.Stats("output.txt")
     p.strip_dirs().sort_stats("time").print_stats()
 
@@ -86,9 +82,10 @@ def popolaDizionario():
     registro.add("Italiano", 6.5)
     registro.add("Ed. Fisica", "Distinto")
 
-def stampaChiavi():
+def chiavi():
+    #Chiavi del dizionario
     chiavi = registro.keys()
-    print ("LE CHIAVI SONO ", chiavi)
+
 def valori():
     #Valori del dizionario
     valori = registro.values()
@@ -110,10 +107,8 @@ def elemento():
     result = registro.get("Arte")
 
 
-
 if __name__ == '__main__':
     main()
 
-   # codeProfiling()
-
-
+    # Decommentare per eseguire code profiling
+    # codeProfiling()

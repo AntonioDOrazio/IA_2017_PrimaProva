@@ -1,11 +1,7 @@
 # Antonio D'Orazio - 0242178
 
-if __name__ == '__main__':
-    from strutture.Stack import PilaArrayList
-    from strutture.Queue import CodaArrayList_deque
-else:
-    from strutture.Stack import PilaArrayList
-    from strutture.Queue import CodaArrayList_deque
+from strutture.Stack import PilaArrayList
+from strutture.Queue import CodaArrayList_deque
 
 
 class BinaryNode:
@@ -69,8 +65,9 @@ class LazyBinaryTree:
                     self.insertAsRightSubTree(pred, newTree)
                 return True
             else:
+                isDeleted = not self.isActive(curr)
                 curr.info = self.info(newTree.root)
-                return False
+                return isDeleted # Ritorno false se ha sovrascritto un nodo eliminato
 
     def insertAsLeftSubTree(self, father, subtree):
         """Inserisce radice di un sottoalbero come figlio sinistro del nodo father"""
@@ -103,7 +100,7 @@ class LazyBinaryTree:
                 # scambio il contenuto informativo dei nodi
                 toRemove.info, maxLeft.info = maxLeft.info, toRemove.info
                 # adesso so che maxLeft non ha figli destri e posso applicare
-                # la cutOneSonNode
+                # la oneSonDeletion
                 self.oneSonDeletion(maxLeft)
             return True
         return False
